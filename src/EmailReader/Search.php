@@ -59,8 +59,6 @@ class Search
 		try {
 			$criteriaText = $this->getCriteriaText();
 
-			var_dump($criteriaText);
-
 			if ($this->folder) {
 				$path = $this->folder->getFullPath();
 
