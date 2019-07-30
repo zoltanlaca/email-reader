@@ -33,7 +33,7 @@ var_dump($emails);
 
 ## Install
 
-###```composer.json```
+### ```composer.json```
 
 ```json
 {
