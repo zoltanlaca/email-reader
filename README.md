@@ -15,8 +15,8 @@
 ```php
 <?php
 
-use Fortuity\EmailReader\Credentials\Imap;
-use Fortuity\EmailReader\EmailReader;
+use ZoltanLaca\EmailReader\Credentials\Imap;
+use ZoltanLaca\EmailReader\EmailReader;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -29,4 +29,22 @@ $emails = $reader
     ->get();
 
 var_dump($emails);
+```
+
+## Install
+
+###```composer.json```
+
+```json
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:zoltanlaca/email-reader.git"
+        }
+    ],
+    "require": {
+        "zoltanlaca/email-reader": "^1"
+    }
+}
 ```
