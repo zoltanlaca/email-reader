@@ -52,9 +52,10 @@ class Search
 	}
 
 	/**
+	 * @param bool $markAsSeen
 	 * @return \PhpImap\IncomingMail[]
 	 */
-	public function get(): array
+	public function get(bool $markAsSeen = false): array
 	{
 		try {
 			$criteriaText = $this->getCriteriaText();
@@ -66,14 +67,16 @@ class Search
 			}
 
 			if ($criteriaText === null) {
+				$this->mailbox->setImapSearchOption(SE_UID);
+
 				$mailIds = $this->mailbox->searchMailbox();
 			} else {
 				$stream = $this->mailbox->getImapStream();
-				$mailIds = imap_search($stream, $criteriaText, SE_FREE, 'UTF-8') ?: [];
+				$mailIds = imap_search($stream, $criteriaText, SE_UID, 'UTF-8') ?: [];
 			}
 
-			return array_map(function (int $mailId) {
-				return $this->mailbox->getMail($mailId, false);
+			return array_map(function (int $mailId) use ($markAsSeen) {
+				return $this->mailbox->getMail($mailId, $markAsSeen);
 			}, $mailIds);
 		} catch (Throwable $exception) {
 			return [];

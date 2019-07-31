@@ -77,19 +77,17 @@ class EmailReader
 
 	/**
 	 * @param \ZoltanLaca\EmailReader\Folder|null $folder
+	 * @param bool $markAsSeen
 	 * @return \PhpImap\IncomingMail[]
-	 * @throws \Exception
 	 */
-	public function getEmails(Folder $folder = null): array
+	public function getEmails(Folder $folder = null, bool $markAsSeen = false): array
 	{
-		return $this->searchEmails($folder)->get();
+		return $this->searchEmails($folder)->get($markAsSeen);
 	}
 
 	/**
 	 * @param \ZoltanLaca\EmailReader\Folder|null $folder
 	 * @return \ZoltanLaca\EmailReader\Search
-	 * @throws \ZoltanLaca\EmailReader\Exceptions\FolderNotExistsException
-	 * @throws \ZoltanLaca\EmailReader\Exceptions\RequiredFieldMissingException
 	 */
 	public function searchEmails(Folder $folder = null): Search
 	{

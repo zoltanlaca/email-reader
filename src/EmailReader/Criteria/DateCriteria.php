@@ -34,7 +34,7 @@ abstract class DateCriteria extends Criteria
 	 */
 	public function getText(): string
 	{
-		return "{$this->getName()} \"{$this->getFormattedDate()}\"";
+		return "{$this->getName()} {$this->getFormattedDate()}";
 	}
 
 	/**

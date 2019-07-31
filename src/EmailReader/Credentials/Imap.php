@@ -46,6 +46,11 @@ class Imap implements Credentials
 	private $folder;
 
 	/**
+	 * @var string
+	 */
+	private $encoding;
+
+	/**
 	 * @var \PhpImap\Mailbox
 	 */
 	private $mailbox;
@@ -61,7 +66,6 @@ class Imap implements Credentials
 	 * @param string $encoding
 	 * @throws \ZoltanLaca\EmailReader\Exceptions\InvalidCredentialsException
 	 * @throws \ZoltanLaca\EmailReader\Exceptions\InvalidParameterException
-	 * @throws \PhpImap\Exceptions\InvalidParameterException
 	 */
 	public function __construct(
 		string $host,
