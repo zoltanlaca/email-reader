@@ -33,7 +33,7 @@ class EmailReader
 	}
 
 	/**
-	 * @param string $path
+	 * @param string|null $path
 	 * @return \ZoltanLaca\EmailReader\Folder
 	 * @throws \ZoltanLaca\EmailReader\Exceptions\FolderNotExistsException
 	 * @throws \ZoltanLaca\EmailReader\Exceptions\RequiredFieldMissingException

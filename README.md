@@ -69,14 +69,23 @@ var_dump($emails);
  - `__construct(\ZoltanLaca\EmailReader\Contracts\Credentials $credentials)`
  - `getFolder(string $path = null): \ZoltanLaca\EmailReader\Folder`
  - `getFolders(): \ZoltanLaca\EmailReader\Folder[]`
- - `getEmails(\ZoltanLaca\EmailReader\Folder $folder = null, bool $markAsSeen = false): \PhpImap\IncomingMail[]`
+ - `getEmails(\ZoltanLaca\EmailReader\Folder $folder = null, bool $markAsSeen = false): \ZoltanLaca\EmailReader\Mail[]`
  - `searchEmails(\ZoltanLaca\EmailReader\Folder $folder = null): \ZoltanLaca\EmailReader\Search`
 
 ### Search: `\ZoltanLaca\EmailReader\Search::class`
 
  - `__construct(\PhpImap\Mailbox $mailbox, \ZoltanLaca\EmailReader\Folder $folder)`
  - `pushCriteria(\ZoltanLaca\EmailReader\Criteria\Criteria $criteria): self`
- - `get(bool $markAsSeen = false): \PhpImap\IncomingMail[])`
+ - `get(bool $markAsSeen = false): \ZoltanLaca\EmailReader\Mail[])`
+ 
+### Email: `\ZoltanLaca\EmailReader\Mail::class`
+
+ - `markAsRead()`
+ - `markAsUnread()`
+ - `markAsImportant()`
+ - `delete()`
+ - `move(\ZoltanLaca\EmailReader\Folder $folder)`
+ - `copy(\ZoltanLaca\EmailReader\Folder $folder)`
 
 #### Available Criteria
 

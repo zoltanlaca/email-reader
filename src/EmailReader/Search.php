@@ -3,9 +3,9 @@
 namespace ZoltanLaca\EmailReader;
 
 use DateTimeInterface;
-use ZoltanLaca\EmailReader\Criteria;
 use PhpImap\Mailbox;
 use Throwable;
+use ZoltanLaca\EmailReader\Criteria;
 
 /**
  * Class Search
@@ -53,7 +53,7 @@ class Search
 
 	/**
 	 * @param bool $markAsSeen
-	 * @return \PhpImap\IncomingMail[]
+	 * @return \ZoltanLaca\EmailReader\Mail[]
 	 */
 	public function get(bool $markAsSeen = false): array
 	{
@@ -75,8 +75,10 @@ class Search
 				$mailIds = imap_search($stream, $criteriaText, SE_UID, 'UTF-8') ?: [];
 			}
 
-			return array_map(function (int $mailId) use ($markAsSeen) {
-				return $this->mailbox->getMail($mailId, $markAsSeen);
+			return array_map(function (int $mailId) use ($markAsSeen): Mail {
+				$incomingMail = $this->mailbox->getMail($mailId, $markAsSeen);
+
+				return Mail::fromIncomingMail($this->mailbox, $incomingMail);
 			}, $mailIds);
 		} catch (Throwable $exception) {
 			return [];
